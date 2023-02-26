@@ -1,17 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MailService } from './mail/mail.service';
-import { SMTPEmailService } from './mail/smtp-email.service';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [],
   controllers: [AppController],
   providers: [
-    {
-      provide: MailService,
-      useClass: SMTPEmailService
-    }
+    PrismaService,
   ],
 })
 export class AppModule {}
+
+// Trabalhar com validação -> npm i class-validator class-transformer

@@ -9,3 +9,18 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Notification {
+  id          String    @id
+  recipientId String
+  content     String
+  category    String
+  readAt      DateTime? // ? -> pode ser nulo
+  createdAt   DateTime  @default(now())
+
+  @@index([recipientId])
+}
+
+// Para realmente criar a tabela
+// Migration -> Controle de versão de tudo que foi feito no banco -> npx prisma migrate dev
+// npx prisma studio -> Visualizar banco de dados no navegador
